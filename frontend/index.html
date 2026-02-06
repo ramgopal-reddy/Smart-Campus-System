@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<body>
+<h2 id="status">Scanning...</h2>
+<video id="video" autoplay></video>
+
+<script>
+const video = document.getElementById("video");
+navigator.mediaDevices.getUserMedia({video:true})
+.then(stream => video.srcObject = stream);
+
+const ws = new WebSocket("ws://localhost:8000/scan");
+
+setInterval(()=>{
+  const canvas=document.createElement("canvas");
+  canvas.width=video.videoWidth;
+  canvas.height=video.videoHeight;
+  canvas.getContext("2d").drawImage(video,0,0);
+  ws.send(canvas.toDataURL("image/jpeg").split(",")[1]);
+},1000);
+
+ws.onmessage=e=>{
+  document.getElementById("status").innerText="Detected: "+e.data;
+};
+</script>
+</body>
+</html>
