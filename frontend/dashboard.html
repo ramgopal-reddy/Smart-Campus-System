@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<body>
+<h2>Attendance Dashboard</h2>
+<div id="log"></div>
+
+<script>
+const ws = new WebSocket("ws://localhost:8000/scan");
+
+ws.onmessage = e => {
+  const log = document.getElementById("log");
+  log.innerHTML += "<p>"+e.data+" marked attendance</p>";
+};
+</script>
+</body>
+</html>
