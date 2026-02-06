@@ -1,8 +1,10 @@
-fastapi
-uvicorn
-deepface
+tensorflow==2.15.0
+keras==2.15.0
+deepface==0.0.92
 opencv-python-headless
 numpy
+fastapi
+uvicorn
 sqlalchemy
 aiosqlite
 python-multipart
