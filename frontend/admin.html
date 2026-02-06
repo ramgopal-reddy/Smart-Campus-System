@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<body>
+<input id="name" placeholder="Student Name">
+<video id="video" autoplay></video>
+<button onclick="register()">Register</button>
+
+<script>
+const video = document.getElementById("video");
+navigator.mediaDevices.getUserMedia({video:true})
+.then(stream => video.srcObject = stream);
+
+function capture() {
+  const canvas = document.createElement("canvas");
+  canvas.width = video.videoWidth;
+  canvas.height = video.videoHeight;
+  canvas.getContext("2d").drawImage(video,0,0);
+  return canvas.toDataURL("image/jpeg").split(",")[1];
+}
+
+function register() {
+  const ws = new WebSocket("ws://localhost:8000/register");
+  ws.onopen = () => {
+    ws.send(document.getElementById("name").value);
+    ws.send(capture());
+  };
+  ws.onmessage = e => alert(e.data);
+}
+</script>
+</body>
+</html>
