@@ -1,0 +1,218 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<div class="container mt-5">
+  <div class="text-center mb-5 animate__animated animate__fadeInDown">
+    <h1 class="display-5 fw-bold gradient-text mb-3">Campus Analytics</h1>
+    <p class="lead text-muted">Detailed insights and utilization metrics</p>
+  </div>
+
+  <!-- Quick Stats Overview -->
+  <div class="row mb-4">
+    <div class="col-lg-3 col-md-6 mb-4">
+      <div class="card bg-primary text-white h-100">
+        <div class="card-body">
+          <div class="d-flex justify-content-between">
+            <div>
+              <h4 class="mb-0" id="totalStudents">-</h4>
+              <p class="mb-0">Total Students</p>
+            </div>
+            <div class="align-self-center">
+              <i class="bi bi-people fs-1"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-3 col-md-6 mb-4">
+      <div class="card bg-success text-white h-100">
+        <div class="card-body">
+          <div class="d-flex justify-content-between">
+            <div>
+              <h4 class="mb-0" id="totalCourses">-</h4>
+              <p class="mb-0">Total Courses</p>
+            </div>
+            <div class="align-self-center">
+              <i class="bi bi-book fs-1"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-3 col-md-6 mb-4">
+      <div class="card bg-info text-white h-100">
+        <div class="card-body">
+          <div class="d-flex justify-content-between">
+            <div>
+              <h4 class="mb-0" id="totalClassrooms">-</h4>
+              <p class="mb-0">Total Classrooms</p>
+            </div>
+            <div class="align-self-center">
+              <i class="bi bi-door-open fs-1"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-3 col-md-6 mb-4">
+      <div class="card bg-warning text-white h-100">
+        <div class="card-body">
+          <div class="d-flex justify-content-between">
+            <div>
+              <h4 class="mb-0" id="totalFaculty">-</h4>
+              <p class="mb-0">Total Faculty</p>
+            </div>
+            <div class="align-self-center">
+              <i class="bi bi-person-badge fs-1"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Detailed Analytics -->
+  <div class="row">
+    <div class="col-lg-6 mb-4">
+      <div class="card shadow h-100 animate__animated animate__fadeInUp">
+        <div class="card-header bg-dark text-white">
+          <h5 class="mb-0">
+            <i class="bi bi-people me-2"></i>Student Analytics
+          </h5>
+        </div>
+        <div class="card-body">
+          <div class="row mb-3">
+            <div class="col-md-6">
+              <div class="text-center">
+                <h3 class="gradient-text" id="activeStudents">-</h3>
+                <p class="text-muted mb-0">Active Students</p>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="text-center">
+                <h3 class="gradient-text" id="attendanceRate">-</h3>
+                <p class="text-muted mb-0">Attendance Rate</p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="progress mb-3" style="height: 15px;">
+            <div class="progress-bar bg-primary" role="progressbar" style="width: 0%" id="studentProgress"></div>
+          </div>
+          <p class="card-text">
+            <small class="text-muted">Student engagement and classroom utilization based on current enrollment data</small>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-6 mb-4">
+      <div class="card shadow h-100 animate__animated animate__fadeInUp">
+        <div class="card-header bg-dark text-white">
+          <h5 class="mb-0">
+            <i class="bi bi-person-badge me-2"></i>Faculty Analytics
+          </h5>
+        </div>
+        <div class="card-body">
+          <div class="row mb-3">
+            <div class="col-md-6">
+              <div class="text-center">
+                <h3 class="gradient-text" id="avgWorkload">-</h3>
+                <p class="text-muted mb-0">Avg Workload</p>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="text-center">
+                <h3 class="gradient-text" id="facultyCount">-</h3>
+                <p class="text-muted mb-0">Faculty Count</p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="progress mb-3" style="height: 15px;">
+            <div class="progress-bar bg-success" role="progressbar" style="width: 0%" id="facultyProgress"></div>
+          </div>
+          <p class="card-text">
+            <small class="text-muted">Average teaching hours and course load across all faculty members</small>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-6 mb-4">
+      <div class="card shadow h-100 animate__animated animate__fadeInUp">
+        <div class="card-header bg-dark text-white">
+          <h5 class="mb-0">
+            <i class="bi bi-door-open me-2"></i>Classroom Analytics
+          </h5>
+        </div>
+        <div class="card-body">
+          <div class="row mb-3">
+            <div class="col-md-6">
+              <div class="text-center">
+                <h3 class="gradient-text" id="utilizationRate">-</h3>
+                <p class="text-muted mb-0">Utilization Rate</p>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="text-center">
+                <h3 class="gradient-text" id="totalCapacity">-</h3>
+                <p class="text-muted mb-0">Total Capacity</p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="progress mb-3" style="height: 15px;">
+            <div class="progress-bar bg-warning" role="progressbar" style="width: 0%" id="classroomProgress"></div>
+          </div>
+          <p class="card-text">
+            <small class="text-muted">Classroom space utilization and capacity management metrics</small>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-6 mb-4">
+      <div class="card shadow h-100 animate__animated animate__fadeInUp">
+        <div class="card-header bg-dark text-white">
+          <h5 class="mb-0">
+            <i class="bi bi-graph-up me-2"></i>Performance Metrics
+          </h5>
+        </div>
+        <div class="card-body">
+          <div class="row text-center">
+            <div class="col-md-4">
+              <div class="metric-card">
+                <i class="bi bi-clock-history text-primary mb-2" style="font-size: 2rem;"></i>
+                <h5 class="mb-1">Avg Class Duration</h5>
+                <p class="text-muted mb-0" id="avgClassDuration">-</p>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="metric-card">
+                <i class="bi bi-calendar-check text-success mb-2" style="font-size: 2rem;"></i>
+                <h5 class="mb-1">Schedule Efficiency</h5>
+                <p class="text-muted mb-0" id="scheduleEfficiency">-</p>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="metric-card">
+                <i class="bi bi-award text-warning mb-2" style="font-size: 2rem;"></i>
+                <h5 class="mb-1">Resource Optimization</h5>
+                <p class="text-muted mb-0" id="resourceOptimization">-</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="{% static 'js/analytics.js' %}"></script>
+{% endblock %}

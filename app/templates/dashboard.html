@@ -1,0 +1,144 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<div class="container mt-5">
+  <div class="text-center mb-5 animate__animated animate__fadeInDown">
+    <h1 class="display-5 fw-bold gradient-text mb-3">Dashboard</h1>
+    <p class="lead text-muted">Welcome to Smart Campus Management System</p>
+    <div class="mt-3">
+      <span class="badge bg-primary fs-6">
+        <i class="bi bi-person-circle me-2"></i>
+        <span id="userWelcome">Loading...</span>
+      </span>
+    </div>
+  </div>
+
+  <div class="row">
+    <!-- Quick Stats -->
+    <div class="col-lg-3 col-md-6 mb-4">
+      <div class="card bg-primary text-white h-100">
+        <div class="card-body">
+          <div class="d-flex justify-content-between">
+            <div>
+              <h4 class="mb-0" id="totalStudents">-</h4>
+              <p class="mb-0">Total Students</p>
+            </div>
+            <div class="align-self-center">
+              <i class="bi bi-people fs-1"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-3 col-md-6 mb-4">
+      <div class="card bg-success text-white h-100">
+        <div class="card-body">
+          <div class="d-flex justify-content-between">
+            <div>
+              <h4 class="mb-0" id="totalCourses">-</h4>
+              <p class="mb-0">Total Courses</p>
+            </div>
+            <div class="align-self-center">
+              <i class="bi bi-book fs-1"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-3 col-md-6 mb-4">
+      <div class="card bg-info text-white h-100">
+        <div class="card-body">
+          <div class="d-flex justify-content-between">
+            <div>
+              <h4 class="mb-0" id="totalClassrooms">-</h4>
+              <p class="mb-0">Total Classrooms</p>
+            </div>
+            <div class="align-self-center">
+              <i class="bi bi-door-open fs-1"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-3 col-md-6 mb-4">
+      <div class="card bg-warning text-white h-100">
+        <div class="card-body">
+          <div class="d-flex justify-content-between">
+            <div>
+              <h4 class="mb-0" id="totalFaculty">-</h4>
+              <p class="mb-0">Total Faculty</p>
+            </div>
+            <div class="align-self-center">
+              <i class="bi bi-person-badge fs-1"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Quick Actions -->
+  <div class="row">
+    <div class="col-lg-8 mx-auto">
+      <div class="card shadow-lg animate__animated animate__fadeInUp">
+        <div class="card-header bg-dark text-white">
+          <h4 class="mb-0">
+            <i class="bi bi-lightning me-2"></i>Quick Actions
+          </h4>
+        </div>
+        <div class="card-body p-4">
+          <div class="row g-3">
+            <div class="col-md-4">
+              <a href="{% url 'students_page' %}" class="btn btn-outline-primary w-100 h-100 d-flex flex-column align-items-center justify-content-center">
+                <i class="bi bi-people fs-2 mb-2"></i>
+                <span>Manage Students</span>
+              </a>
+            </div>
+            <div class="col-md-4">
+              <a href="{% url 'attendance_page' %}" class="btn btn-outline-success w-100 h-100 d-flex flex-column align-items-center justify-content-center">
+                <i class="bi bi-check-circle fs-2 mb-2"></i>
+                <span>Mark Attendance</span>
+              </a>
+            </div>
+            <div class="col-md-4">
+              <a href="{% url 'courses_page' %}" class="btn btn-outline-info w-100 h-100 d-flex flex-column align-items-center justify-content-center">
+                <i class="bi bi-book fs-2 mb-2"></i>
+                <span>Manage Courses</span>
+              </a>
+            </div>
+            <div class="col-md-4">
+              <a href="{% url 'faculty_page' %}" class="btn btn-outline-warning w-100 h-100 d-flex flex-column align-items-center justify-content-center">
+                <i class="bi bi-person-badge fs-2 mb-2"></i>
+                <span>Manage Faculty</span>
+              </a>
+            </div>
+            <div class="col-md-4">
+              <a href="{% url 'blocks_page' %}" class="btn btn-outline-secondary w-100 h-100 d-flex flex-column align-items-center justify-content-center">
+                <i class="bi bi-building fs-2 mb-2"></i>
+                <span>Manage Blocks</span>
+              </a>
+            </div>
+            <div class="col-md-4">
+              <a href="{% url 'classrooms_page' %}" class="btn btn-outline-dark w-100 h-100 d-flex flex-column align-items-center justify-content-center">
+                <i class="bi bi-door-open fs-2 mb-2"></i>
+                <span>Manage Classrooms</span>
+              </a>
+            </div>
+            <div class="col-md-4">
+              <a href="{% url 'analytics_page' %}" class="btn btn-outline-primary w-100 h-100 d-flex flex-column align-items-center justify-content-center">
+                <i class="bi bi-graph-up fs-2 mb-2"></i>
+                <span>View Analytics</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="{% static 'js/dashboard.js' %}"></script>
+{% endblock %}

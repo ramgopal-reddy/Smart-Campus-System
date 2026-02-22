@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<div class="container mt-5">
+  <div class="text-center mb-5 animate__animated animate__fadeInDown">
+    <h1 class="display-5 fw-bold gradient-text mb-3">Block Management</h1>
+    <p class="lead text-muted">Manage campus blocks and buildings</p>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-10 mx-auto">
+      <div class="card shadow-lg animate__animated animate__fadeInUp">
+        <div class="card-header bg-primary text-white">
+          <h4 class="mb-0">
+            <i class="bi bi-building me-2"></i>Block Directory
+          </h4>
+        </div>
+        <div class="card-body p-4">
+          <!-- Search and Add -->
+          <div class="row mb-4">
+            <div class="col-md-8">
+              <div class="input-group">
+                <span class="input-group-text">
+                  <i class="bi bi-search"></i>
+                </span>
+                <input type="text" id="blockSearch" class="form-control" placeholder="Search blocks..." onkeyup="searchBlocks()">
+              </div>
+            </div>
+            <div class="col-md-4">
+              <button class="btn btn-primary w-100" onclick="addBlock()">
+                <i class="bi bi-plus-circle me-1"></i>Add Block
+              </button>
+            </div>
+          </div>
+
+          <!-- Blocks Table -->
+          <div class="table-responsive">
+            <table class="table table-hover">
+              <thead class="table-dark">
+                <tr>
+                  <th><i class="bi bi-hash me-1"></i>ID</th>
+                  <th><i class="bi bi-building me-1"></i>Block Name</th>
+                  <th><i class="bi bi-calendar me-1"></i>Created At</th>
+                  <th><i class="bi bi-gear me-1"></i>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="blockTableBody">
+                <!-- Block records will be loaded here -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Add Block Modal -->
+<div class="modal fade" id="blockModal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header bg-primary text-white">
+        <h5 class="modal-title">
+          <i class="bi bi-plus-circle me-2"></i>Add Block
+        </h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <form id="blockForm">
+          <div class="mb-3">
+            <label for="blockName" class="form-label fw-semibold">
+              <i class="bi bi-building me-1"></i>Block Name
+            </label>
+            <input type="text" id="blockName" class="form-control" placeholder="e.g., A-Block, B-Block, Library" required>
+            <div class="form-text">Enter the name of the block or building</div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary" onclick="saveBlock()">
+              <i class="bi bi-check-circle me-2"></i>Save Block
+            </button>
+            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+              <i class="bi bi-x-circle me-2"></i>Cancel
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="{% static 'js/blocks.js' %}"></script>
+{% endblock %}

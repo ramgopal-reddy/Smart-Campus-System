@@ -1,0 +1,124 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<div class="container mt-5">
+  <div class="text-center mb-5 animate__animated animate__fadeInDown">
+    <h1 class="display-5 fw-bold gradient-text mb-3">Make-up Class Management</h1>
+    <p class="lead text-muted">Schedule and manage make-up classes for students</p>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-10 mx-auto">
+      <div class="card shadow-lg animate__animated animate__fadeInUp">
+        <div class="card-header bg-warning text-white">
+          <h4 class="mb-0">
+            <i class="bi bi-calendar-plus me-2"></i>Schedule Make-up Class
+          </h4>
+        </div>
+        <div class="card-body p-4">
+          <!-- Search and Filter -->
+          <div class="row mb-4">
+            <div class="col-md-6">
+              <div class="input-group">
+                <span class="input-group-text">
+                  <i class="bi bi-search"></i>
+                </span>
+                <input type="text" id="makeupSearch" class="form-control" placeholder="Search make-up classes...">
+              </div>
+            </div>
+            <div class="col-md-3">
+              <select id="statusFilter" class="form-select">
+                <option value="">All Status</option>
+                <option value="scheduled">Scheduled</option>
+                <option value="completed">Completed</option>
+              </select>
+            </div>
+            <div class="col-md-3">
+              <button class="btn btn-warning w-100" onclick="scheduleMakeupClass()">
+                <i class="bi bi-plus-circle me-1"></i>Schedule Class
+              </button>
+            </div>
+          </div>
+
+          <!-- Makeup Classes Table -->
+          <div class="table-responsive">
+            <table class="table table-hover">
+              <thead class="table-dark">
+                <tr>
+                  <th><i class="bi bi-hash me-1"></i>ID</th>
+                  <th><i class="bi bi-person me-1"></i>Faculty</th>
+                  <th><i class="bi bi-book me-1"></i>Course</th>
+                  <th><i class="bi bi-clock me-1"></i>Scheduled Time</th>
+                  <th><i class="bi bi-ticket-perforated me-1"></i>Remedial Code</th>
+                  <th><i class="bi bi-people me-1"></i>Attendance</th>
+                  <th><i class="bi bi-gear me-1"></i>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="makeupTableBody">
+                <!-- Makeup class records will be loaded here -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Schedule Makeup Class Modal -->
+<div class="modal fade" id="makeupModal" tabindex="-1">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header bg-warning text-white">
+        <h5 class="modal-title">
+          <i class="bi bi-calendar-plus me-2"></i>Schedule Make-up Class
+        </h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <form id="makeupForm">
+          <div class="row g-3">
+            <div class="col-md-6">
+              <label for="facultySelect" class="form-label fw-semibold">
+                <i class="bi bi-person me-1"></i>Faculty
+              </label>
+              <select id="facultySelect" class="form-select" required>
+                <option value="">Select Faculty</option>
+              </select>
+            </div>
+            <div class="col-md-6">
+              <label for="courseSelect" class="form-label fw-semibold">
+                <i class="bi bi-book me-1"></i>Course
+              </label>
+              <select id="courseSelect" class="form-select" required>
+                <option value="">Select Course</option>
+              </select>
+            </div>
+            <div class="mb-3">
+              <label for="remedialCode" class="form-label">Remedial Code</label>
+              <input type="text" class="form-control" id="remedialCode" required>
+              <small class="text-muted">Unique code for makeup class identification</small>
+            </div>
+            <div class="col-12">
+              <label for="scheduledTime" class="form-label fw-semibold">
+                <i class="bi bi-clock me-1"></i>Scheduled Time
+              </label>
+              <input type="datetime-local" id="scheduledTime" class="form-control" required>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-success" onclick="saveMakeupClass()">
+          <i class="bi bi-check-circle me-2"></i>Schedule Class
+        </button>
+        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+          <i class="bi bi-x-circle me-2"></i>Cancel
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="{% static 'js/makeup.js' %}"></script>
+{% endblock %}

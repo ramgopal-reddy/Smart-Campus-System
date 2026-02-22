@@ -1,0 +1,126 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<div class="container mt-5">
+  <div class="text-center mb-5 animate__animated animate__fadeInDown">
+    <h1 class="display-5 fw-bold gradient-text mb-3">Classroom Management</h1>
+    <p class="lead text-muted">Manage classroom allocation and scheduling</p>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-10 mx-auto">
+      <div class="card shadow-lg animate__animated animate__fadeInUp">
+        <div class="card-header bg-success text-white">
+          <h4 class="mb-0">
+            <i class="bi bi-building me-2"></i>Classroom Directory
+          </h4>
+        </div>
+        <div class="card-body p-4">
+          <!-- Search and Filter -->
+          <div class="row mb-4">
+            <div class="col-md-4">
+              <div class="input-group">
+                <span class="input-group-text">
+                  <i class="bi bi-search"></i>
+                </span>
+                <input type="text" id="classroomSearch" class="form-control" placeholder="Search classrooms...">
+              </div>
+            </div>
+            <div class="col-md-3">
+              <select id="buildingFilter" class="form-select">
+                <option value="">All Buildings</option>
+                <option value="A-Block">A Block</option>
+                <option value="B-Block">B Block</option>
+                <option value="C-Block">C Block</option>
+                <option value="D-Block">D Block</option>
+                <option value="Library">Library</option>
+              </select>
+            </div>
+            <div class="col-md-3">
+              <select id="capacityFilter" class="form-select">
+                <option value="">All Capacities</option>
+                <option value="small">Small (1-30)</option>
+                <option value="medium">Medium (31-60)</option>
+                <option value="large">Large (61-100)</option>
+                <option value="extra">Extra (100+)</option>
+              </select>
+            </div>
+            <div class="col-md-2">
+              <button class="btn btn-primary w-100" onclick="addClassroom()">
+                <i class="bi bi-plus-circle me-1"></i>Add
+              </button>
+            </div>
+          </div>
+
+          <!-- Classroom Table -->
+          <div class="table-responsive">
+            <table class="table table-hover">
+              <thead class="table-dark">
+                <tr>
+                  <th><i class="bi bi-hash me-1"></i>Room No</th>
+                  <th><i class="bi bi-people me-1"></i>Capacity</th>
+                  <th><i class="bi bi-building me-1"></i>Block ID</th>
+                  <th><i class="bi bi-gear me-1"></i>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="classroomTableBody">
+                <!-- Classroom records will be loaded here -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Add Classroom Modal -->
+<div class="modal fade" id="classroomModal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header bg-success text-white">
+        <h5 class="modal-title">
+          <i class="bi bi-plus-circle me-2"></i>Add Classroom
+        </h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <form id="classroomForm">
+          <div class="mb-3">
+            <label for="roomNumber" class="form-label fw-semibold">
+              <i class="bi bi-hash me-1"></i>Room Number
+            </label>
+            <input type="text" id="roomNumber" class="form-control" required>
+          </div>
+          <div class="mb-3">
+            <label for="capacity" class="form-label fw-semibold">
+              <i class="bi bi-people me-1"></i>Capacity
+            </label>
+            <input type="number" id="capacity" class="form-control" min="1" max="200" required>
+          </div>
+          <div class="mb-3">
+            <label for="block_id" class="form-label fw-semibold">
+              <i class="bi bi-building me-1"></i>Block
+            </label>
+            <select id="block_id" class="form-select" required>
+              <option value="">Select a block</option>
+              <!-- Block options will be loaded here -->
+            </select>
+            <div class="form-text">Select the block where this classroom is located</div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-success" onclick="saveClassroom()">
+              <i class="bi bi-check-circle me-2"></i>Save Classroom
+            </button>
+            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+              <i class="bi bi-x-circle me-2"></i>Cancel
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="{% static 'js/classrooms.js' %}"></script>
+{% endblock %}

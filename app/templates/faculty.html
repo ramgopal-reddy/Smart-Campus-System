@@ -1,0 +1,123 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<div class="container mt-5">
+  <div class="text-center mb-5 animate__animated animate__fadeInDown">
+    <h1 class="display-5 fw-bold gradient-text mb-3">Faculty Management</h1>
+    <p class="lead text-muted">Manage faculty information and assignments</p>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-10 mx-auto">
+      <div class="card shadow-lg animate__animated animate__fadeInUp">
+        <div class="card-header bg-primary text-white">
+          <h4 class="mb-0">
+            <i class="bi bi-person-badge me-2"></i>Faculty Directory
+          </h4>
+        </div>
+        <div class="card-body p-4">
+          <!-- Search and Filter -->
+          <div class="row mb-4">
+            <div class="col-md-6">
+              <div class="input-group">
+                <span class="input-group-text">
+                  <i class="bi bi-search"></i>
+                </span>
+                <input type="text" id="facultySearch" class="form-control" placeholder="Search faculty...">
+              </div>
+            </div>
+            <div class="col-md-3">
+              <select id="departmentFilter" class="form-select">
+                <option value="">All Departments</option>
+                <option value="Computer Science">Computer Science</option>
+                <option value="Electronics">Electronics</option>
+                <option value="Mechanical">Mechanical</option>
+                <option value="Civil">Civil</option>
+                <option value="Business">Business</option>
+              </select>
+            </div>
+            <div class="col-md-3">
+              <button class="btn btn-primary w-100" onclick="addFaculty()">
+                <i class="bi bi-plus-circle me-1"></i>Add Faculty
+              </button>
+            </div>
+          </div>
+
+          <!-- Quick Actions -->
+          <div class="row mb-4">
+            <div class="col-12">
+              <div class="d-flex gap-2 justify-content-center">
+                <a href="{% url 'makeup_page' %}" class="btn btn-warning">
+                  <i class="bi bi-calendar-plus me-1"></i>Schedule Make-up Class
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Faculty Table -->
+          <div class="table-responsive">
+            <table class="table table-hover">
+              <thead class="table-dark">
+                <tr>
+                  <th>Name</th>
+                  <th>Email</th>
+                  <th>Assigned Courses</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="facultyTableBody">
+                <!-- Faculty records will be loaded here -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Add Faculty Modal -->
+<div class="modal fade" id="facultyModal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header bg-primary text-white">
+        <h5 class="modal-title">
+          <i class="bi bi-person-plus me-2"></i>Add Faculty
+        </h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <form id="facultyForm">
+          <div class="mb-3">
+            <label for="name" class="form-label">Faculty Name</label>
+            <input type="text" class="form-control" id="name" required>
+          </div>
+          <div class="mb-3">
+            <label for="email" class="form-label">Email Address</label>
+            <input type="email" class="form-control" id="email" required>
+          </div>
+          <div class="mb-3">
+            <label for="courses" class="form-label">Assigned Courses</label>
+            <div id="courseAssignments" class="border rounded p-3 mb-3">
+              <div class="text-muted">No courses assigned yet</div>
+            </div>
+            <button type="button" class="btn btn-outline-primary btn-sm" onclick="addCourseAssignment()">
+              <i class="bi bi-plus-circle me-1"></i>Add Course Assignment
+            </button>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-success" onclick="saveFaculty()">
+          <i class="bi bi-check-circle me-2"></i>Save Faculty
+        </button>
+        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+          <i class="bi bi-x-circle me-2"></i>Cancel
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="{% static 'js/faculty.js' %}"></script>
+{% endblock %}

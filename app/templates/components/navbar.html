@@ -1,0 +1,79 @@
+<nav class="navbar navbar-expand-lg navbar-light shadow-sm sticky-top">
+  <div class="container">
+    <a class="navbar-brand fw-bold d-flex align-items-center" href="{% url 'home' %}">
+      <i class="bi bi-building me-2"></i>
+      Smart LPU
+    </a>
+
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarNav"
+      aria-controls="navbarNav"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto align-items-center">
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'home' %}">
+            <i class="bi bi-house-door me-1"></i>Home
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'attendance_page' %}">
+            <i class="bi bi-check-circle me-1"></i>Attendance
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'food_page' %}">
+            <i class="bi bi-cup-hot me-1"></i>Food Stall
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'students_page' %}">
+            <i class="bi bi-people me-1"></i>Students
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'faculty_page' %}">
+            <i class="bi bi-person-badge me-1"></i>Faculty
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'blocks_page' %}">
+            <i class="bi bi-building me-1"></i>Blocks
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'classrooms_page' %}">
+            <i class="bi bi-door-open me-1"></i>Classrooms
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'courses_page' %}">
+            <i class="bi bi-book me-1"></i>Courses
+          </a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+            <i class="bi bi-grid-3x3-gap me-1"></i>Resources
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="{% url 'analytics_page' %}"><i class="bi bi-graph-up me-2"></i>Analytics</a></li>
+            <li><a class="dropdown-item" href="#"><i class="bi bi-book me-2"></i>Library</a></li>
+            <li><a class="dropdown-item" href="#"><i class="bi bi-calendar3 me-2"></i>Schedule</a></li>
+            <li><a class="dropdown-item" href="#"><i class="bi bi-clipboard-data me-2"></i>Results</a></li>
+          </ul>
+        </li>
+        <li class="nav-item" id="authSection">
+          <!-- Authentication section will be populated by JavaScript -->
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
